@@ -14,7 +14,7 @@
     //获取所有password
     var inputs = $("input[type=password]");
 
-    //遍历添加mouseoveer和mouseout事件改变type
+    //遍历添加mouseover和mouseout事件改变type
     inputs.map(function () {
         var ele = $(this);
         ele.mouseover(function () {
