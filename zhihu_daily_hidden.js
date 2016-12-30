@@ -23,5 +23,5 @@
     //隐藏详情页二维码
     var qr = $("div.qr").css("display","none");
 
-    console.log("hidden success.");
+    console.log("hide success.");
 })();
