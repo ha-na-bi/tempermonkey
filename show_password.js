@@ -1,20 +1,25 @@
 // ==UserScript==
-// @name         鼠标移入显示密码
-// @version      0.2
-// @description  鼠标移动到页面上的password密码框可以查看输入（临时改为text）
+// @name         show password
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  鼠标移入password展示text
 // @author       fn
-// @require      https://cdn.bootcss.com/jquery/2.2.3/jquery.min.js
 // @include      *
 // ==/UserScript==
 
-(function () {
-    //使用严格模式
+(function() {
     'use strict';
 
-    //获取所有password,加入mouseover和mouseout事件
-    var inputs = $("input[type=password]").mouseover(function () {
-            this.type = 'text';
-        }).mouseout(function () {
-            this.type = 'password';
-        });
+    let inputs = document.getElementsByTagName('input');
+    for (let index = 0; index < inputs.length; index++) {
+        const input = inputs[index];
+        if(input.type == 'password'){
+            input.onmouseenter = function() {
+                this.type = 'text';
+            }
+            input.onmouseleave = function() {
+                this.type = 'password';
+            }
+        }
+    }
 })();
