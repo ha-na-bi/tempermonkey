@@ -1,9 +1,9 @@
-# TemperMonkey_Script
+# Tempermonkey
 简单的猴子脚本
 
 ## 目前实现脚本
-1. 显示密码 (show_password.js)
+1. 显示密码（[show-password.js](show-password.js)）
+![show-password](images/show-password.gif)
 
-    ![image](https://github.com/CoyoIsLove/TemperMonkey_Script/blob/master/images/show_password.gif)
-
-2. 知乎日报精简 (zhihu_daily_hidden.js)
+2. 复习提示（[review-tip.js](review-tip.js)）
+![review-tip](images/review-tip.gif)
