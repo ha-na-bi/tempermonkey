@@ -17,23 +17,37 @@
 (function () {
     let toastrcss = GM_getResourceText('toastrcss');
     GM_addStyle(toastrcss);
+    GM_addStyle('#toast-container>div{width: 400px; padding: 15px 10px 0 15px;}');
+    GM_addStyle('#toast-container>.toast-info{background-image: none !important;}');
+    GM_addStyle('.toast-info{background-color: black !important;}');
+    GM_addStyle('.toast-progress{background-color: red !important;}');
 
     // 初始化 markdown 转换组件
     let converter = new showdown.Converter();
 
     // 初始化 toastr 组件的配置
-    toastr.options.timeOut = 3000; //默认的超时时间
+    toastr.options.timeOut = 10*1000; //默认的超时时间
     toastr.options.progressBar = true; //进度条
     toastr.options.positionClass = "toast-bottom-right"; //出现位置
 
     // 要提示的内容，如何从网络获取特定的文本？
     let messages = [
-        '信息**安全策略**的四大特性是<span style="color:orange">科学性</span>、<span style="color:orange">严肃性</span>、<span style="color:orange">非二义性</span>和<span style="color:orange">可操作性</span>。',
+        {
+            "title": "恢复点目标（Recovery Point Objective, RPO）",
+            "content": "RPO 定义了在发生中断后可容忍的数据丢失量，以时间为单位来衡量。它回答了这样一个问题：“在灾难发生时，企业可以容忍丢失多长时间的数据？”\
+                        例如，如果一个公司设定了一个 4 小时的 RPO，那么这意味着它必须至少每 4 小时备份一次数据，以确保在发生灾难时最多只丢失 4 小时的数据。"
+        },
+        {
+            "title": "恢复时间目标（Recovery Time Objective, RTO）",
+            "content": "RTO 是指从业务中断发生到服务恢复到可接受水平所需的最大时间。它回答了这样一个问题：“企业需要多长时间才能恢复其关键业务功能？”\
+                        例如，如果一个公司设定了一个 24 小时的 RTO，那么在灾难发生后，它有 24 小时的时间来恢复其关键系统和服务。"
+        }
     ];
 
     function showMessage(target) {
-        let text = converter.makeHtml(messages[target]);
-        toastr.info(text)
+        let item = messages[target];
+        let text = converter.makeHtml(item.content);
+        toastr.info(text, item.title)
     }
 
     showMessage(getRandomInt(0, messages.length));
